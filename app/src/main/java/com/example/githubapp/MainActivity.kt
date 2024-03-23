@@ -1,6 +1,7 @@
 package com.example.githubapp
 
 import android.os.Bundle
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
@@ -37,6 +38,16 @@ class MainActivity : AppCompatActivity() {
 
         mainViewModel.listUser.observe(this) { listUsers ->
             setReviewData(listUsers)
+        }
+
+        with(activityMainBinding) {
+            searchView.setupWithSearchBar(searchBar)
+            searchView.editText.setOnEditorActionListener { _, _, _ ->
+                searchBar.setText(searchView.text)
+                searchView.hide()
+                Toast.makeText(this@MainActivity, searchView.text, Toast.LENGTH_SHORT).show()
+                false
+            }
         }
 
 
