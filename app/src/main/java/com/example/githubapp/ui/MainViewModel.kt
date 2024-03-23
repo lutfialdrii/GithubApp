@@ -22,9 +22,9 @@ class MainViewModel : ViewModel() {
         getUsers()
     }
 
-    private fun getUsers() {
+    fun getUsers(q: String = "Lutfi") {
         Log.d(TAG, "GET USERS")
-        val client = ApiConfig.getApiService().getUsers("lutfi")
+        val client = ApiConfig.getApiService().getUsers(q)
         client.enqueue(object : retrofit2.Callback<GithubResponse> {
             override fun onResponse(
                 call: Call<GithubResponse>,

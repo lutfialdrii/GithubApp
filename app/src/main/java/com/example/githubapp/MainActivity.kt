@@ -39,6 +39,7 @@ class MainActivity : AppCompatActivity() {
         with(activityMainBinding) {
             searchView.setupWithSearchBar(searchBar)
             searchView.editText.setOnEditorActionListener { _, _, _ ->
+                mainViewModel.getUsers(searchView.text.toString())
                 searchBar.setText(searchView.text)
                 searchView.hide()
                 Toast.makeText(this@MainActivity, searchView.text, Toast.LENGTH_SHORT).show()
