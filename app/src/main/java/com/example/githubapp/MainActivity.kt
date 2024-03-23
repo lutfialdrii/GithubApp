@@ -1,6 +1,7 @@
 package com.example.githubapp
 
 import android.os.Bundle
+import android.view.View
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
@@ -36,6 +37,10 @@ class MainActivity : AppCompatActivity() {
             setReviewData(listUsers)
         }
 
+        mainViewModel.isLoading.observe(this) {
+            showLoading(it)
+        }
+
         with(activityMainBinding) {
             searchView.setupWithSearchBar(searchBar)
             searchView.editText.setOnEditorActionListener { _, _, _ ->
@@ -54,5 +59,13 @@ class MainActivity : AppCompatActivity() {
         val adapter = ListUserAdapter()
         adapter.submitList(listUsers)
         activityMainBinding.rvUsers.adapter = adapter
+    }
+
+    private fun showLoading(isLoading: Boolean) {
+        if (isLoading) {
+            activityMainBinding.progressBar.visibility = View.VISIBLE
+        } else {
+            activityMainBinding.progressBar.visibility = View.INVISIBLE
+        }
     }
 }

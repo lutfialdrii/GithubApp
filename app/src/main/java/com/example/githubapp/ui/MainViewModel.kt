@@ -14,6 +14,9 @@ class MainViewModel : ViewModel() {
     private val _listUser = MutableLiveData<List<ItemsItem>>()
     val listUser: LiveData<List<ItemsItem>> = _listUser
 
+    private val _isLoading = MutableLiveData<Boolean>()
+    val isLoading: LiveData<Boolean> = _isLoading
+
     companion object {
         private const val TAG = "MainViewModel"
     }
@@ -23,22 +26,25 @@ class MainViewModel : ViewModel() {
     }
 
     fun getUsers(q: String = "Lutfi") {
-        Log.d(TAG, "GET USERS")
+//        Log.d(TAG, "GET USERS")
+        _isLoading.value = true
         val client = ApiConfig.getApiService().getUsers(q)
         client.enqueue(object : retrofit2.Callback<GithubResponse> {
             override fun onResponse(
                 call: Call<GithubResponse>,
                 response: Response<GithubResponse>
             ) {
+                _isLoading.value = false
                 if (response.isSuccessful) {
                     _listUser.value = response.body()?.items
-                    Log.d(TAG, listUser.value?.size.toString())
+//                    Log.d(TAG, listUser.value?.size.toString())
                 } else {
                     Log.d(TAG, "OnFailure : ${response.message()}")
                 }
             }
 
             override fun onFailure(call: Call<GithubResponse>, t: Throwable) {
+                _isLoading.value = false
                 Log.d(TAG, "OnFailure : ${t.message}")
             }
         })

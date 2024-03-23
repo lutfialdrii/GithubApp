@@ -1,5 +1,6 @@
 package com.example.githubapp.ui
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
@@ -42,5 +43,11 @@ class ListUserAdapter : ListAdapter<ItemsItem, ListUserAdapter.MyViewHolder>(
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val user = getItem(position)
         holder.bind(user)
+
+        holder.itemView.setOnClickListener {
+            val intent = Intent(holder.itemView.context, DetailUserActivity::class.java)
+            intent.putExtra(DetailUserActivity.KEY_NAME, user.login)
+            holder.itemView.context.startActivity(intent)
+        }
     }
 }
