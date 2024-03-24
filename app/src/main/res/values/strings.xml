@@ -2,6 +2,6 @@
     <string name="app_name">GithubApp</string>
     <string name="searchbar_hint">Cari user</string>
     <string name="dummy_name">Dummy Name</string>
-    <string name="followers">Followers</string>
-    <string name="following">Following</string>
+    <string name="followers">%d Followers</string>
+    <string name="following">%d Following</string>
 </resources>

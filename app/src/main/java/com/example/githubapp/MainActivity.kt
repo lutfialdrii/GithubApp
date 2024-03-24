@@ -6,8 +6,6 @@ import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.githubapp.data.response.ItemsItem
@@ -34,7 +32,7 @@ class MainActivity : AppCompatActivity() {
         activityMainBinding.rvUsers.addItemDecoration(itemDecor)
 
         mainViewModel.listUser.observe(this) { listUsers ->
-            setReviewData(listUsers)
+            setData(listUsers)
         }
 
         mainViewModel.isLoading.observe(this) {
@@ -55,7 +53,7 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-    private fun setReviewData(listUsers: List<ItemsItem>) {
+    private fun setData(listUsers: List<ItemsItem>) {
         val adapter = ListUserAdapter()
         adapter.submitList(listUsers)
         activityMainBinding.rvUsers.adapter = adapter

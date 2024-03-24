@@ -1,37 +1,102 @@
 package com.example.githubapp.data.response
 
-data class DetailUserResponse(
-    val gistsUrl: String,
-    val reposUrl: String,
-    val followingUrl: String,
-    val twitterUsername: Any,
-    val bio: Any,
-    val createdAt: String,
-    val login: String,
-    val type: String,
-    val blog: String,
-    val subscriptionsUrl: String,
-    val updatedAt: String,
-    val siteAdmin: Boolean,
-    val company: String,
-    val id: Int,
-    val publicRepos: Int,
-    val gravatarId: String,
-    val email: Any,
-    val organizationsUrl: String,
-    val hireable: Any,
-    val starredUrl: String,
-    val followersUrl: String,
-    val publicGists: Int,
-    val url: String,
-    val receivedEventsUrl: String,
-    val followers: Int,
-    val avatarUrl: String,
-    val eventsUrl: String,
-    val htmlUrl: String,
-    val following: Int,
-    val name: String,
-    val location: String,
-    val nodeId: String
-)
+import com.google.gson.annotations.SerializedName
 
+data class DetailUserResponse(
+
+	@field:SerializedName("gists_url")
+	val gistsUrl: String,
+
+	@field:SerializedName("repos_url")
+	val reposUrl: String,
+
+	@field:SerializedName("following_url")
+	val followingUrl: String,
+
+	@field:SerializedName("twitter_username")
+	val twitterUsername: Any,
+
+	@field:SerializedName("bio")
+	val bio: String,
+
+	@field:SerializedName("created_at")
+	val createdAt: String,
+
+	@field:SerializedName("login")
+	val login: String,
+
+	@field:SerializedName("type")
+	val type: String,
+
+	@field:SerializedName("blog")
+	val blog: String,
+
+	@field:SerializedName("subscriptions_url")
+	val subscriptionsUrl: String,
+
+	@field:SerializedName("updated_at")
+	val updatedAt: String,
+
+	@field:SerializedName("site_admin")
+	val siteAdmin: Boolean,
+
+	@field:SerializedName("company")
+	val company: Any,
+
+	@field:SerializedName("id")
+	val id: Int,
+
+	@field:SerializedName("public_repos")
+	val publicRepos: Int,
+
+	@field:SerializedName("gravatar_id")
+	val gravatarId: String,
+
+	@field:SerializedName("email")
+	val email: Any,
+
+	@field:SerializedName("organizations_url")
+	val organizationsUrl: String,
+
+	@field:SerializedName("hireable")
+	val hireable: Boolean,
+
+	@field:SerializedName("starred_url")
+	val starredUrl: String,
+
+	@field:SerializedName("followers_url")
+	val followersUrl: String,
+
+	@field:SerializedName("public_gists")
+	val publicGists: Int,
+
+	@field:SerializedName("url")
+	val url: String,
+
+	@field:SerializedName("received_events_url")
+	val receivedEventsUrl: String,
+
+	@field:SerializedName("followers")
+	val followers: Int,
+
+	@field:SerializedName("avatar_url")
+	val avatarUrl: String,
+
+	@field:SerializedName("events_url")
+	val eventsUrl: String,
+
+	@field:SerializedName("html_url")
+	val htmlUrl: String,
+
+	@field:SerializedName("following")
+	val following: Int,
+
+	@field:SerializedName("name")
+	val name: String,
+
+	@field:SerializedName("location")
+	val location: String,
+
+	@field:SerializedName("node_id")
+	val nodeId: String
+)
