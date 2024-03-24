@@ -61,6 +61,7 @@ class DetailUserActivity : AppCompatActivity() {
         Glide.with(this).load(user.avatarUrl).into(detailUserBinding.ivAvatar)
         detailUserBinding.tvName.text = user.name
         detailUserBinding.tvUsername.text = user.login
+        detailUserBinding.tvBio.text = user.bio
         val newFollowers = this.resources.getString(R.string.followers, user.followers)
         val newFollowing = this.resources.getString(R.string.following, user.following)
         detailUserBinding.tvFollowers.text = newFollowers
