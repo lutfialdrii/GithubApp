@@ -19,8 +19,8 @@ class ListDetailFollowFragment : Fragment() {
     private val binding get() = _binding!!
 
 
-    var position: Int = 0
-    var username: String = ""
+    private var position: Int = 0
+    private var username: String = ""
 
 
     companion object {
@@ -44,7 +44,7 @@ class ListDetailFollowFragment : Fragment() {
             username = it.getString(ARG_USERNAME).toString()
         }
         Log.d("usernameFragment", username)
-        var layoutManager = LinearLayoutManager(requireActivity())
+        val layoutManager = LinearLayoutManager(requireActivity())
         binding.rvFollows.layoutManager = layoutManager
         val itemDecor = DividerItemDecoration(context, layoutManager.orientation)
         binding.rvFollows.addItemDecoration(itemDecor)

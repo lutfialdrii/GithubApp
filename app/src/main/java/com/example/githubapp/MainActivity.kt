@@ -26,7 +26,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(activityMainBinding.root)
 
 
-        var layoutManager = LinearLayoutManager(this)
+        val layoutManager = LinearLayoutManager(this)
         activityMainBinding.rvUsers.layoutManager = layoutManager
         val itemDecor = DividerItemDecoration(this, layoutManager.orientation)
         activityMainBinding.rvUsers.addItemDecoration(itemDecor)

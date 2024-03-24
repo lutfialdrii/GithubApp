@@ -8,7 +8,6 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.githubapp.data.response.ItemsItem
-import com.example.githubapp.databinding.ActivityMainBinding
 import com.example.githubapp.databinding.ItemUserBinding
 
 class ListUserAdapter : ListAdapter<ItemsItem, ListUserAdapter.MyViewHolder>(
@@ -28,7 +27,7 @@ class ListUserAdapter : ListAdapter<ItemsItem, ListUserAdapter.MyViewHolder>(
         }
     }
 
-    class MyViewHolder(val binding: ItemUserBinding) : RecyclerView.ViewHolder(binding.root) {
+    class MyViewHolder(private val binding: ItemUserBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(user: ItemsItem) {
             binding.tvName.text = user.login
             Glide.with(itemView.context).load(user.avatarUrl).into(binding.ivAvatar)
