@@ -17,6 +17,9 @@ class FavoriteViewModel(application: Application) : AndroidViewModel(application
     val getData: LiveData<FavoriteUser> = _getData
     val getAllData: LiveData<List<FavoriteUser>>
 
+    private val _isLoading = MutableLiveData<Boolean>()
+    val isLoading: LiveData<Boolean> = _isLoading
+
 
     init {
         val favoriteUserDao = FavoriteUserDatabase.getInstance(application).favUserDao()

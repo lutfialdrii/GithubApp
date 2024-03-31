@@ -16,6 +16,7 @@ import com.example.githubapp.data.remote.response.ItemsItem
 import com.example.githubapp.databinding.ActivityMainBinding
 import com.example.githubapp.ui.ListUserAdapter
 import com.example.githubapp.ui.favorite.FavoriteActivity
+import com.example.githubapp.ui.setting.SettingActivity
 
 class MainActivity : AppCompatActivity() {
     private lateinit var activityMainBinding: ActivityMainBinding
@@ -66,6 +67,10 @@ class MainActivity : AppCompatActivity() {
         when (item.itemId) {
             R.id.favorite_page -> {
                 val intent = Intent(this, FavoriteActivity::class.java)
+                startActivity(intent)
+            }
+            R.id.setting_page -> {
+                val intent = Intent(this, SettingActivity::class.java)
                 startActivity(intent)
             }
 
