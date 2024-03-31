@@ -5,19 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fitsSystemWindows="true"
-    android:padding="16dp"
-    tools:context=".ui.main.MainActivity">
-
-    <com.google.android.material.search.SearchBar
-        android:id="@+id/searchBar"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="?attr/actionBarSize"
-        android:hint="@string/searchbar_hint"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    tools:context=".ui.favorite.FavoriteActivity">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_users"
@@ -25,17 +13,8 @@
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/searchBar" />
-
-    <com.google.android.material.search.SearchView
-        android:id="@+id/searchView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:hint="@string/searchbar_hint"
-        android:paddingTop="?attr/actionBarSize"
-        app:layout_anchor="@id/searchBar">
-
-    </com.google.android.material.search.SearchView>
+        app:layout_constraintTop_toTopOf="parent"
+        tools:listitem="@layout/item_user" />
 
     <ProgressBar
         android:id="@+id/progressBar"

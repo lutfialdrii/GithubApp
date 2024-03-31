@@ -1,12 +1,12 @@
-package com.example.githubapp.ui
+package com.example.githubapp.ui.main
 
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.githubapp.data.response.GithubResponse
-import com.example.githubapp.data.response.ItemsItem
-import com.example.githubapp.data.retrofit.ApiConfig
+import com.example.githubapp.data.remote.response.GithubResponse
+import com.example.githubapp.data.remote.response.ItemsItem
+import com.example.githubapp.data.remote.retrofit.ApiConfig
 import retrofit2.Call
 import retrofit2.Response
 

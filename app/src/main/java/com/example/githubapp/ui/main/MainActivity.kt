@@ -1,6 +1,9 @@
-package com.example.githubapp
+package com.example.githubapp.ui.main
 
+import android.content.Intent
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
@@ -8,10 +11,11 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.githubapp.data.response.ItemsItem
+import com.example.githubapp.R
+import com.example.githubapp.data.remote.response.ItemsItem
 import com.example.githubapp.databinding.ActivityMainBinding
 import com.example.githubapp.ui.ListUserAdapter
-import com.example.githubapp.ui.MainViewModel
+import com.example.githubapp.ui.favorite.FavoriteActivity
 
 class MainActivity : AppCompatActivity() {
     private lateinit var activityMainBinding: ActivityMainBinding
@@ -51,6 +55,23 @@ class MainActivity : AppCompatActivity() {
         }
 
 
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu_item, menu)
+        return super.onCreateOptionsMenu(menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.favorite_page -> {
+                val intent = Intent(this, FavoriteActivity::class.java)
+                startActivity(intent)
+            }
+
+
+        }
+        return super.onOptionsItemSelected(item)
     }
 
     private fun setData(listUsers: List<ItemsItem>) {

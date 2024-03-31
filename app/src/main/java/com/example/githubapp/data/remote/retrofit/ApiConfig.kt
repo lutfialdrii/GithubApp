@@ -1,11 +1,10 @@
-package com.example.githubapp.data.retrofit
+package com.example.githubapp.data.remote.retrofit
 
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import retrofit2.create
 
 class ApiConfig {
 
@@ -17,7 +16,7 @@ class ApiConfig {
             val authInterceptor = Interceptor { chain ->
                 val req = chain.request()
                 val requestHeader = req.newBuilder()
-                    .addHeader("Authorization", "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")
+                    .addHeader("Authorization", "token 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")
                     .build()
                 chain.proceed(requestHeader)
 

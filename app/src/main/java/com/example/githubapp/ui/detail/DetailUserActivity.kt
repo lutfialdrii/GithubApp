@@ -1,4 +1,4 @@
-package com.example.githubapp.ui
+package com.example.githubapp.ui.detail
 
 import android.os.Bundle
 import android.util.Log
@@ -6,10 +6,12 @@ import android.view.View
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.content.res.AppCompatResources
 import androidx.viewpager2.widget.ViewPager2
 import com.bumptech.glide.Glide
 import com.example.githubapp.R
-import com.example.githubapp.data.response.DetailUserResponse
+import com.example.githubapp.data.local.entity.FavoriteUser
+import com.example.githubapp.data.remote.response.DetailUserResponse
 import com.example.githubapp.databinding.ActivityDetailUserBinding
 import com.example.githubapp.utils.SectionsPagerAdapter
 import com.google.android.material.tabs.TabLayout
@@ -19,9 +21,13 @@ class DetailUserActivity : AppCompatActivity() {
 
     private lateinit var detailUserBinding: ActivityDetailUserBinding
     private val detailUserViewModel by viewModels<DetailViewModel>()
+    private val favoriteViewModel by viewModels<FavoriteViewModel>()
+    private var isFavorite = false
+
 
     companion object {
         const val KEY_NAME = "username"
+        const val KEY_AVATAR_URL = "avatar_url"
         private val TAB_TITLES =
             arrayOf("Followers", "Following")
     }
@@ -33,6 +39,7 @@ class DetailUserActivity : AppCompatActivity() {
         setContentView(detailUserBinding.root)
 
         val username = intent.getStringExtra(KEY_NAME)
+        val avatarUrl = intent.getStringExtra(KEY_AVATAR_URL)
         Log.d(KEY_NAME, username!!)
 
         detailUserViewModel.getUser(username)
@@ -41,6 +48,36 @@ class DetailUserActivity : AppCompatActivity() {
         }
         detailUserViewModel.isLoading.observe(this) {
             showLoading(it)
+        }
+//        favoriteViewModel.getData(username)
+//        favoriteViewModel.getData.observe(this) {
+//            Log.d("GetDATA", "onCreate: $it")
+//            if (it != null) {
+//                isFavorite = true
+//                setFabIcon(isFavorite)
+//            } else {
+//                setFabIcon(isFavorite)
+//            }
+//        }
+
+        favoriteViewModel.getAllData.observe(this) {
+            it.map { fav ->
+                isFavorite = fav.username == username
+            }
+            setFabIcon(isFavorite)
+        }
+
+
+
+        detailUserBinding.fabFavorite.setOnClickListener {
+            isFavorite = if (isFavorite) {
+                favoriteViewModel.delete(username)
+                false
+            } else {
+                favoriteViewModel.insert(FavoriteUser(username, avatarUrl))
+                true
+            }
+
         }
 
 //        Menghubungkan ViewPager2 dengan TabLayout
@@ -54,6 +91,16 @@ class DetailUserActivity : AppCompatActivity() {
             tab.text = TAB_TITLES[position]
         }.attach()
 
+    }
+
+    private fun setFabIcon(isFav: Boolean) {
+        detailUserBinding.fabFavorite.setImageDrawable(
+            AppCompatResources.getDrawable(
+                this,
+                if (isFav) R.drawable.ic_favorite
+                else R.drawable.ic_favorite_border
+            )
+        )
     }
 
     private fun setData(user: DetailUserResponse) {
